@@ -1,6 +1,11 @@
-class GuessesController < ApplicationController
-  def index
-    # params = {"first_number"=>"4", "second_number"=>"5", "third_number"=>"6"}
+class GuessesController < ActionController::Base
+
+def index
+  # params = ["frist_number" => "4", "second_number" => "5" etc.]
+
+  # @first = params["first_number"]
+  # @second = params["second_number"]
+  # @third = params["third_number"]
 
     g = Guess.new.grep(integer)
     g.first_num = params["first_number"]
@@ -12,12 +17,22 @@ class GuessesController < ApplicationController
 
     render("guesses/index.html.erb")
   end
+=======
+g = Guess.new
+g.first_num = params["first_number"]
+g.second_num = params["second_number"]
+g.third_num = params["third_number"]
+g.save
 
-  def answers
-    # params = {"rule"=>"Hi there"}
+@list = Guess.all
+render("guesses/index.html.erb")
+end
 
-    @user_answer = params[:rule]
+def answers
+  # params = {"rule"=>"Hi there"}
 
-    render("guesses/answer.html.erb")
-  end
+  @user_answer = params["rule"]
+
+render("guesses/answers.html.erb")
+end
 end
