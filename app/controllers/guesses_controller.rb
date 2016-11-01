@@ -8,9 +8,9 @@ def index
   # @third = params["third_number"]
 
 g = Guess.new
-g.first_num = params['first_number']
-g.second_num = params['second_number']
-g.third_num = params['third_number']
+g.first_num = params["first_number"]
+g.second_num = params["second_number"]
+g.third_num = params["third_number"]
 g.save
 
 @list = Guess.all
