@@ -17,25 +17,22 @@
 <p>Now it’s your turn. Enter a number sequence in the boxes below, and we’ll tell you whether it satisfies the rule or not. You can test as many sequences as you want.</p>
 
 <% @list.each do |guess| %>
-<li>
-  <%= guess.first_num %>
-  <%= guess.second_num %>
-  <%= guess.third_num %>
-</li>
+  <% params["first_number"] %>
+  <% params["second_number"] %>
+  <% params["third_number"] %>
 <% end %>
 
 <ul>
-  <li>
-    <%= @first %>, <%= @second %>, <%= @third %>
+   <li>
+     <%= params["first_number"] %>, <%= params["second_number"] %>, <%= params["third_number"] %>
 
-    <% if params["first_number"] < params["second_number"] && params["second_number"] < params["third_number"] %>
-    Yes.
-    <% else %>
-    No.
-    <% end %>
-
-  </li>
-</ul>
+     <% if params["first_number"] < params["second_number"] && params["second_number"] < params["third_number"] %>
+       Yes!
+     <% else %>
+       No.
+     <% end %>
+   </li>
+ </ul>
 
 <form action="/all_guesses">
   <p>
@@ -58,7 +55,7 @@
 
 <hr>
 
-<form action="">
+<form action="/show_answer">
   <p>
     When you think you know the rule, describe it in words below and then submit your answer. <strong>Make sure you’re right; you won’t get a second chance.</strong>
   </p>

@@ -1,27 +1,26 @@
-class GuessesController < ActionController::Base
-
-def index
-  # params = ["frist_number" => "4", "second_number" => "5" etc.]
-
-  # @first = params["first_number"]
-  # @second = params["second_number"]
-  # @third = params["third_number"]
+class GuessesController < ApplicationController
+  def index
+    # params = {"first_number"=>"4", "second_number"=>"5", "third_number"=>"6"}
 
 g = Guess.new
-g.first_num = params['first_number']
-g.second_num = params['second_number']
-g.third_num = params['third_number']
+g.first_num = params[:first_number]
+g.second_num = params[:second_number]
+g.third_num = params[:third_number]
 g.save
 
 @list = Guess.all
-render("guesses/index.html.erb")
+
+if g.first_num == nil || g.second_num == nil || g.third_num == nil
+  puts ""
 end
+    render("guesses/index.html.erb")
+  end
 
-def answers
-  # params = {"rule"=>"Hi there"}
+  def answers
+    # params = {"rule"=>"Hi there"}
 
-  @user_answer = params["rule"]
+    @user_answer = params[:rule]
 
-render("guesses/answers.html.erb")
-end
+    render("guesses/answer.html.erb")
+  end
 end
